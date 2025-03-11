@@ -3,7 +3,7 @@ import axios from "axios";
 import { getBoxColor } from "../utils/getBoxColour";
 import "./Wordle.css";
 
-const API_URL = 'http://127.0.0.1:8000/api/games/'; // Configure this in env file
+const API_URL = "http://127.0.0.1:8000/api/games/"; // Configure this in env file
 const randomGameId = Math.floor(Math.random() * 10) + 1;
 
 const WordleGame = () => {
@@ -13,7 +13,7 @@ const WordleGame = () => {
   const [isGameOver, setIsGameOver] = useState(false);
   const [guesses, setGuesses] = useState([]);
 
-    // console.log("Random game id is :", randomGameId);
+  // console.log("Random game id is :", randomGameId);
 
   useEffect(() => {
     axios
@@ -40,7 +40,7 @@ const WordleGame = () => {
           word,
         })
         .then((response) => {
-        //   console.log("Response after guess", response);
+          //   console.log("Response after guess", response);
           const feedback = response.data?.feedback;
           setFeedback(feedback);
           setGuesses((prevGuesses) => [
@@ -80,35 +80,20 @@ const WordleGame = () => {
           </div>
         ))}
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "20px",
-        }}
-      >
+      <div className="guess-form">
         <input
           type="text"
-          placeholder="Guess"
+          placeholder="Guess Word"
           value={guess_word}
           onChange={handleInputChange}
           maxLength={word.length}
           disabled={isGameOver}
-          style={{
-            fontSize: "16px",
-            marginRight: "10px",
-          }}
+          className="guess-input"
         />
         <button
           onClick={handleSubmitGuess}
           disabled={isGameOver}
-          style={{
-            padding: "10px 20px",
-            fontSize: "16px",
-            backgroundColor: "#007BFF",
-            color: "#fff",
-          }}
+          className="submit-button"
         >
           Submit
         </button>
