@@ -1,0 +1,43 @@
+.guess-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .guess-input {
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .submit-button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .box-color {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    /* color: '#fff', */
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .guess-box {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .guess-box-item {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px
+  }
