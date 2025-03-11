@@ -1,21 +1,13 @@
-# game/views.py
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
-# from rest_framework.permissions import IsAuthenticated
 from django.utils.crypto import get_random_string
 from .models import Game, Guess
-from .serializers import GameSerializer, GuessSerializer
+from .serializers import GameSerializer
 
 class GameViewSet(viewsets.ModelViewSet):
     queryset = Game.objects.all()
     serializer_class = GameSerializer
-    # permission_classes = [IsAuthenticated]
-
-    # def perform_create(self, serializer):
-    #     word = get_random_string(length=5).lower()
-    #     # game = serializer.save(user=self.request.user, word=word)
-    #     game = serializer.save(word=word)
 
     @action(detail=True, methods=['post'])
     def make_guess(self, request, pk=None):
@@ -29,13 +21,10 @@ class GameViewSet(viewsets.ModelViewSet):
         if len(guess_word) != 5:
             return Response({"error": "Guess must be a 5-letter word."}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Validate the guess
         feedback = self.get_feedback(game.word, guess_word)
         
-        # Save the guess to the database
         guess = Guess.objects.create(game=game, guess_word=guess_word, feedback=feedback)
         
-        # Check if the game is complete
         print('Game now is: ', game.attempts)
         game.attempts += 1
         if feedback == "GGGGG":
