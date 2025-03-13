@@ -98,12 +98,12 @@ const WordleGame = () => {
           Submit
         </button>
       </div>
-      {/* {feedback && (
+      {feedback && (
                 <div>
                     <h3>Result:</h3>
                     <h4>{JSON.stringify(feedback, null, 2)}</h4>
                 </div>
-            )} */}
+            )}
       {isGameOver && <h2>You Won!</h2>}
     </div>
   );
